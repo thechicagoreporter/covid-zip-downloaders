@@ -30,3 +30,29 @@ make help
 ```
 make snapshot
 ```
+
+This will download files like `data/external/fl-latest.json`.
+
+You can tag data downloads:
+
+```
+make TAG=davids-download snapshot
+```
+
+This will download files like `data/external/fl-davids-download.json`.
+
+```
+make TAG=`date '+%s'` snapshot
+```
+
+This will download files like `data/external/fl-1590467891.json`.
+
+# Architecture
+
+The `processors` directory is a series of Python scripts. These scripts can do basically whatever, though Mapserver downloads are all pretty similar.
+
+They must have the same basic command line interface to be run in an automated fashion with GNU Make:
+
+```
+python processors/SCRIPT.py OUTPUTFILE
+```

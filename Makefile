@@ -24,11 +24,18 @@ export
 # Activate Python environment
 PYENV = pipenv run
 
+TAG = latest
+
+# Downloaders
+DOWNLOADERS = $(basename $(notdir $(wildcard processors/*.py)))
 
 ##@ Basic usage
 
 .PHONY: all
 all: snapshot ## Download all data
+
+.PHONY: snapshot
+snapshot:  $(patsubst %, data/external/%-$(TAG).json, $(DOWNLOADERS))
 
 .PHONY: clean
 clean: rm/external ## Clean local data files
@@ -43,7 +50,7 @@ help: ## Display this help
 
 ##@ Download
 
-data/external/%.json:
+data/external/%-$(TAG).json:
 	$(PYENV) python processors/$*.py $@
 
 ##@ Setup

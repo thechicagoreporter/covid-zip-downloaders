@@ -1,23 +1,23 @@
 """
-Download Florida's COVID ZIP code data
+Download Hawaii's COVID ZIP code data
 """
 import click
 import requests
 from urllib.parse import urlparse, parse_qs
 
-URL_ROOT = 'https://services1.arcgis.com/CY1LXxl9zlJeBuRZ/arcgis/rest/services/COVID_19_Cases_in_Florida_by_Zip_Code/FeatureServer/0/query'
+URL_ROOT = 'https://services.arcgis.com/HQ0xoN0EzDPBOEci/arcgis/rest/services/covid_web_map/FeatureServer/0/query'
 PARAMS = {
 	'f': ['geojson'],
 	'where': ['1=1'],
 	'returnGeometry': ['true'],
 	'spatialRel': ['esriSpatialRelIntersects'],
-	'maxAllowableOffset': ['4891'],
-	'geometry': ['{"xmin":-10018754.171396948,"ymin":2504688.542852983,"xmax":-7514065.628548959,"ymax":5009377.08570097,"spatialReference":{"wkid":102100,"latestWkid":3857}}'],
-	'geometryType': ['esriGeometryEnvelope'],
-	'inSR': ['102100'],
 	'outFields': ['*'],
+	'maxRecordCountFactor': ['2'],
 	'outSR': ['102100'],
-	'resultType': ['tile']
+	'resultOffset': ['0'],
+	'resultRecordCount': ['4000'],
+	'cacheHint': ['true'],
+	'quantizationParameters': ['{"mode":"view","originPosition":"upperLeft","tolerance":4.777061637456608,"extent":{"xmin":-17839020.866323866,"ymin":2142384.0950807394,"xmax":-17224704.327052422,"ymax":2539547.753445243,"spatialReference":{"wkid":102100,"latestWkid":3857}}}']
 }
 
 
